@@ -1,0 +1,40 @@
+### 1. Add book (through gateway)
+POST http://localhost:9000/api/books
+Content-Type: application/json
+
+{ "title": "Clean Code", "author": "Robert C. Martin", "isbn": "9780132350884" }
+
+### 2. View all books
+GET http://localhost:9000/api/books
+
+### 3. View one book
+GET http://localhost:9000/api/books/1
+
+### 4. Update book
+PUT http://localhost:9000/api/books/1
+Content-Type: application/json
+
+{ "title": "Clean Code (2nd Print)", "author": "Robert C. Martin", "isbn": "9780132350884" }
+
+### 5. Delete book
+DELETE http://localhost:9000/api/books/1
+
+### 6. INVALID: blank title + bad ISBN -> 400
+POST http://localhost:9000/api/books
+Content-Type: application/json
+
+{ "title": "", "author": "X", "isbn": "123" }
+
+### 7. INVALID: duplicate ISBN -> 409 (run request 1 twice)
+
+### 8. INVALID: id not found -> 404
+GET http://localhost:9000/api/books/9999
+
+### 9. INVALID: id not a number -> 400
+GET http://localhost:9000/api/books/abc
+
+### 10. INVALID: malformed JSON -> 400
+POST http://localhost:9000/api/books
+Content-Type: application/json
+
+{ "title": "Oops",
